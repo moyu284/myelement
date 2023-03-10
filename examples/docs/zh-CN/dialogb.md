@@ -57,11 +57,12 @@ Dialog 组件的内容可以是任意的，甚至可以是表格或表单，下�
 <el-button type="text" @click="dialogTableVisible = true">打开嵌套表格的 Dialog</el-button>
 
 <el-dialogb title="收货地址" :visible.sync="dialogTableVisible">
-    <el-table :data="gridData" slot="body">
-        <el-table-column property="date" label="日期" width="150"></el-table-column>
-        <el-table-column property="name" label="姓名" width="200"></el-table-column>
-        <el-table-column property="address" label="地址"></el-table-column>
-    </el-table>
+<!--    <el-table :data="gridData" slot="body">-->
+<!--        <el-table-column property="date" label="日期" width="150"></el-table-column>-->
+<!--        <el-table-column property="name" label="姓名" width="200"></el-table-column>-->
+<!--        <el-table-column property="address" label="地址"></el-table-column>-->
+<!--    </el-table>-->
+    <canvas width="100px" height="100px" slot="body" id="xg"></canvas>
 </el-dialogb>
 
 <!-- Form -->
@@ -120,6 +121,21 @@ Dialog 组件的内容可以是任意的，甚至可以是表格或表单，下�
                 },
                 formLabelWidth: '120px'
             };
+        },
+        mounted(){
+            this.draw();
+        },
+        methods: {
+            draw() {
+                const canvas = document.getElementById("xg");
+                const ctx = canvas.getContext("2d");
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.lineTo(100, 200);
+                ctx.lineTo(400, 200);
+                ctx.lineTo(0, 0);
+                ctx.fill();
+            },
         }
     };
 </script>
